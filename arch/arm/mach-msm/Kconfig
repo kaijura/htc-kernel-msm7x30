@@ -976,6 +976,13 @@ config MSM_SUSPEND_STATS_FIRST_BUCKET
 
 endif # MSM_IDLE_STATS
 
+config QSD_SVS
+       bool "QSD Static Voltage Scaling"
+       depends on (ARCH_MSM_SCORPION)
+       default y
+       help
+	 Enables static voltage scaling using the TPS65023 PMIC.
+
 config MSM_FIQ_SUPPORT
 	default y
 	bool "Enable installation of an FIQ handler."
