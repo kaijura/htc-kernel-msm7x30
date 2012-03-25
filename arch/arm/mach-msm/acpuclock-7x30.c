@@ -163,8 +163,8 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 368640, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },
 	{ 422400, PLL_3,    5, 1,  122800000, 1000, VDD_RAW(1000) },
 	{ 499200, PLL_3,    2, 0,  122800000, 1000, VDD_RAW(1000) },
-	{ 576000, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1000) },
-	{ 652800, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1050) },
+	{ 576000, PLL_3,    2, 0,  153600000, 1000, VDD_RAW(1000) },
+	{ 652800, PLL_3,    2, 0,  153600000, 1050, VDD_RAW(1050) },
         { 768000, PLL_1,    2, 0,  153600000, 1050, VDD_RAW(1050) },
         /* Make sure any freq based from PLL_2 is a multiple of 19200! 
            Voltage tables are being very conservative and are not designed to
@@ -183,20 +183,20 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 #endif
 
 #else
-	{ 24576,  SRC_LPXO, 0, 0,  30720000,  1000, VDD_RAW(1000) },
-	{ 61440,  PLL_3,    5, 11, 61440000,  1000, VDD_RAW(1000) },
-	{ 122880, PLL_3,    5, 5,  61440000,  1000, VDD_RAW(1000) },
-	{ 184320, PLL_3,    5, 4,  614400000  1000, VDD_RAW(1000) },
+	{ 24576,  SRC_LPXO, 0, 0,  30720000,  900, VDD_RAW(900) },
+	{ 61440,  PLL_3,    5, 11, 61440000,  900, VDD_RAW(900) },
+	{ 122880, PLL_3,    5, 5,  61440000,  900, VDD_RAW(900) },
+	{ 184320, PLL_3,    5, 4,  614400000  900, VDD_RAW(900) },
 	{ MAX_AXI_KHZ, SRC_AXI, 1, 0, 614400000 900, VDD_RAW(900) },
 	{ 192000, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
 	{ 245760, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
         { 268800, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
         { 345600, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },        
-	{ 368640, PLL_3,    5, 1,  122800000, 1050, VDD_RAW(900) },
+	{ 368640, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },
 	{ 422400, PLL_3,    5, 1,  122800000, 1000, VDD_RAW(1000) },
 	{ 499200, PLL_3,    2, 0,  122800000, 1000, VDD_RAW(1000) },
-	{ 576000, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1000) },
-	{ 652800, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1050) },
+	{ 576000, PLL_3,    2, 0,  153600000, 1000, VDD_RAW(1000) },
+	{ 652800, PLL_3,    2, 0,  153600000, 1050, VDD_RAW(1050) },
 	{ 768000, PLL_1,    2, 0,  153600000, 1100, VDD_RAW(1050) },
 #ifndef CONFIG_ACPUCLOCK_LIMIT_768MHZ
 	/* ACPU >= 806.4MHz requires MSMC1 @ 1.2V. Voting for
