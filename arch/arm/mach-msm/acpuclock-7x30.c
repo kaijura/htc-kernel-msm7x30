@@ -92,35 +92,56 @@ static struct clock_state drv_state = { 0 };
 
 static struct cpufreq_frequency_table freq_table[] = {
 #ifdef CONFIG_ACPUCLOCK_OVERCLOCKING
-        { 0, 245760 },
-        { 1, 368640 },
-        { 2, 768000 },
-        { 3, 806400 },
-        { 4, 1113600 },
-        { 5, 1209600 },
-        { 6, 1305600 },
-        { 7, 1401600 },
-        { 8, 1497600 },
-        { 9, 1516800 },
+        { 0, 192000 },        
+	{ 1, 245760 },
+        { 2, 268800 },
+        { 3, 345600 },
+        { 4, 368640 },
+        { 5, 422400 },
+        { 6, 499200 },
+        { 7, 576000 },
+        { 8, 652800 },
+        { 9, 729600 },        
+	{ 10, 768000 },
+        { 11, 806400 },
+        { 12, 883200 },
+        { 13, 960000 },
+        { 14, 1036800 },
+        { 15, 1113600 },
+        { 16, 1209600 },
+        { 17, 1267200 },
+        { 18, 1305600 },
+        { 19, 1344000 },
+        { 20, 1401600 },
+        { 21, 1497600 },
+        { 22, 1516800 },
 #ifndef CONFIG_JESUS_PHONE
-        { 10, CPUFREQ_TABLE_END },
+        { 23, CPUFREQ_TABLE_END },
 #else
         /* Just an example of some of the insanity I was able to pull off on my
            device */
-        { 10, 1612800 },
-        { 11, 1708800 },
-        { 12, 1804800 },
-        { 13, CPUFREQ_TABLE_END },
+        { 24, 1612800 },
+        { 25, 1708800 },
+        { 26, 1804800 },
+        { 27, CPUFREQ_TABLE_END },
 #endif
 #else
-	{ 0, 245760 },
-	{ 1, 368640 },
-	{ 2, 768000 },
+        { 0, 192000 },        
+	{ 1, 245760 },
+        { 2, 268800 },
+        { 3, 345600 },
+        { 4, 368640 },
+        { 5, 422400 },
+        { 6, 499200 },
+        { 7, 576000 },
+        { 8, 652800 },
+        { 9, 729600 },        
+	{ 10, 768000 },
 #ifndef CONFIG_ACPUCLOCK_LIMIT_768MHZ
-	{ 3, 806400 },
-	{ 4, CPUFREQ_TABLE_END },
+	{ 11, 806400 },
+	{ 12, CPUFREQ_TABLE_END },
 #else
-	{ 3, CPUFREQ_TABLE_END },
+	{ 11, CPUFREQ_TABLE_END },
 #endif
 #endif
 };
@@ -135,8 +156,15 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
         { 122880, PLL_3,    5, 5,  61440000,  900, VDD_RAW(900) },
         { 184320, PLL_3,    5, 4,  61440000,  900, VDD_RAW(900) },
         { MAX_AXI_KHZ, SRC_AXI, 1, 0, 61440000, 900, VDD_RAW(900) },
+	{ 192000, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
         { 245760, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
-        { 368640, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },
+        { 268800, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
+        { 345600, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },        
+	{ 368640, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },
+	{ 422400, PLL_3,    5, 1,  122800000, 1000, VDD_RAW(1000) },
+	{ 499200, PLL_3,    2, 0,  122800000, 1000, VDD_RAW(1000) },
+	{ 576000, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1025) },
+	{ 652800, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1025) },
         { 768000, PLL_1,    2, 0,  153600000, 1050, VDD_RAW(1050) },
         /* Make sure any freq based from PLL_2 is a multiple of 19200! 
            Voltage tables are being very conservative and are not designed to
@@ -158,16 +186,23 @@ static struct clkctl_acpu_speed acpu_freq_tbl[] = {
 	{ 24576,  SRC_LPXO, 0, 0,  30720000,  1000, VDD_RAW(1000) },
 	{ 61440,  PLL_3,    5, 11, 61440000,  1000, VDD_RAW(1000) },
 	{ 122880, PLL_3,    5, 5,  61440000,  1000, VDD_RAW(1000) },
-	{ 184320, PLL_3,    5, 4,  61440000,  1000, VDD_RAW(1000) },
-	{ MAX_AXI_KHZ, SRC_AXI, 1, 0, 61440000, 1000, VDD_RAW(1000) },
+	{ 184320, PLL_3,    5, 4,  614400000  1000, VDD_RAW(1000) },
+	{ MAX_AXI_KHZ, SRC_AXI, 1, 0, 614400000 1000, VDD_RAW(1000) },
+	{ 192000, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
 	{ 245760, PLL_3,    5, 2,  61440000,  1000, VDD_RAW(1000) },
+        { 268800, PLL_3,    5, 2,  61440000,  900, VDD_RAW(900) },
+        { 345600, PLL_3,    5, 1,  122800000, 900, VDD_RAW(900) },        
 	{ 368640, PLL_3,    5, 1,  122800000, 1050, VDD_RAW(1050) },
+	{ 422400, PLL_3,    5, 1,  122800000, 1000, VDD_RAW(1000) },
+	{ 499200, PLL_3,    2, 0,  122800000, 1000, VDD_RAW(1000) },
+	{ 576000, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1025) },
+	{ 652800, PLL_3,    2, 0,  153600000, 1025, VDD_RAW(1025) },
 	{ 768000, PLL_1,    2, 0,  153600000, 1100, VDD_RAW(1100) },
 #ifndef CONFIG_ACPUCLOCK_LIMIT_768MHZ
 	/* ACPU >= 806.4MHz requires MSMC1 @ 1.2V. Voting for
 	 * AXI @ 192MHz accomplishes this implicitly. 806.4MHz
 	 * is updated to 1024MHz at runtime for QSD8x55. */
-	{ 806400, PLL_2,    3, 0,  192000000, 1100, VDD_RAW(1100) },
+	{ 806400, PLL_2,    3, 0,  192000, 1100, VDD_RAW(1100) },
 #endif
 #endif
 	{ 0 }
