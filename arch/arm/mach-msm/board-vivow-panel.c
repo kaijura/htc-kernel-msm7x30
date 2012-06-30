@@ -409,9 +409,6 @@ void vivow_mdp_color_enhancement(struct mdp_device *mdp_dev)
 
 static struct msm_mdp_platform_data mdp_pdata = {
 	.overrides = MSM_MDP4_MDDI_DMA_SWITCH
-#ifdef CONFIG_OVERLAY_FORCE_UPDATE
-	| MSM_MDP_FORCE_UPDATE
-#endif
 	,
 };
 
